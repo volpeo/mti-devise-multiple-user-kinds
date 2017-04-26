@@ -22,13 +22,31 @@
   </div>
 
   <div class="field">
-    <%= f.label :user_kind %><br />
+    <%= f.label :kind %><br />
     <label>
-      <%= f.radio_button :user_kind, :customer, { checked: true } %> Customer
+      <%= f.radio_button :kind, :customer, { checked: true } %> Customer
     </label>
     <label>
-      <%= f.radio_button :user_kind, :merchant %> Merchant
+      <%= f.radio_button :kind, :merchant %> Merchant
     </label>
+  </div>
+
+  <div class="customer">
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
+    </div>
+  </div>
+
+  <div class="merchant">
+    <div class="field">
+      <%= f.label :company_name %><br />
+      <%= f.text_field :company_name %>
+    </div>
   </div>
 
   <div class="actions">

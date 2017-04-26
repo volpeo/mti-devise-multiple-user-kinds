@@ -1,10 +1,16 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   def create
+    user_class = params[:user][:kind].capitalize.constantize
 
-    resource = params[:user][:user_kind].capitalize.constantize.new(sign_up_params)
+    unpermitted_fields = {
+      Customer => ['company_name'],
+      Merchant => ['first_name', 'last_name']
+    }
+
+    sign_up_params = devise_parameter_sanitizer.sanitize(:sign_up).reject { |k, v| unpermitted_fields[user_class].include? k }
+
+    resource = user_class.new(sign_up_params)
     resource.save
-
-    byebug
 
     resource = resource.acting_as
 
@@ -25,4 +31,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
+
 end

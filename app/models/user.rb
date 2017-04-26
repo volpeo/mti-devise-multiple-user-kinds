@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   actable
 
-  attr_reader :user_kind
+  attr_reader :kind, :first_name, :last_name, :company_name
 end
