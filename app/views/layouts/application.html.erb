@@ -12,7 +12,11 @@
     <div>
       <%= link_to "Home", root_path %> |
       <% if user_signed_in? %>
-        Hey, I'm a <%= current_user %> |
+        Hey, I'm a
+        <strong><%= current_user.class %></strong>
+        <% if current_user.specific %>
+          and a <strong><%= current_user.specific.class %></strong>
+        <% end %> |
         <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to "Sign up", new_user_registration_path %> |
